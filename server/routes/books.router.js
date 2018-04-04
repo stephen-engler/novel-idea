@@ -17,5 +17,19 @@ router.post('/', (req,res)=>{
 
 });
 
+router.get('/', (req,res)=>{
+    console.log('in router/get');
+    let queryText = `SELECT * FROM "books"`;
+    pool.query(queryText)
+        .then((response)=>{
+            console.log('in router get, response ', response);
+            res.send(response.rows);
+        })
+        .catch((error)=>{
+            console.log('in router get error from db ', error);
+            res.sendStatus(500);
+        });
+});
+
 
 module.exports = router;

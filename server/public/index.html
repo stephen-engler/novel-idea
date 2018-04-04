@@ -9,11 +9,13 @@
     <script src="vendors/angular.js"></script>
     <script src="vendors/angular-route.js"></script>
     <!--Material-->
-    <script src="vendors/angular-material.min.js" charset="utf-8"></script>
     <link href="vendors/angular-material.css" rel="stylesheet" type="text/css">
     <script src="vendors/angular-animate.min.js" charset="utf-8"></script>
     <script src="vendors/angular-aria.min.js" charset="utf-8"></script>
     <script src="vendors/angular-messages.min.js" charset="utf-8"></script>
+    <script src="vendors/angular-material.min.js" charset="utf-8"></script>
+
+    <!-- Sweet Alert -->
     <script src="vendors/sweetalert.min.js"></script>
     <!--Client-->
     <script src="scripts/client.js"></script>
@@ -22,14 +24,22 @@
     <!--Controllers-->
     <!-- <script src="scripts/controllers/rent.controller.js"></script>
     <script src="scripts/controllers/sale.controller.js"></script>
-    <script src="scripts/controllers/inputs.controller.js"></script>
-    <script src="scripts/controllers/update.controller.js"></script>
-    <script src="scripts/controllers/search.controller.js"></script> -->
+    <script src="scripts/controllers/inputs.controller.js"></script>-->
+    <script src="scripts/controllers/genre.controller.js"></script>
+    <script src="scripts/controllers/books.controller.js"></script>
     <!--Styles-->
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body ng-app="App">
-    <div ng-controller="HomeController">{{2+2}}</div>
-    <h1>weekend 5</h1>
+    <div class="md-block" flex>
+        <h2>Novel Idea</h2>
+    </div>
+    <div>
+        <div ng-include=" 'views/templates/nav.html  ' "></div>
+        <main ng-view>
+    
+    
+        </main>
+    </div>
 </body>
 </html>

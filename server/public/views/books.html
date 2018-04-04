@@ -18,18 +18,16 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>Rating</label>
-            <md-select name="ratingInput" ng-model="vm.book.rating" type="number">
-                <md-option value="0">0</md-option>
-                <md-option value="1">1</md-option>
-                <md-option value="2">2</md-option>
-                <md-option value="3">3</md-option>
-                <md-option value="4">4</md-option>
-                <md-option value="5">5</md-option>
+            <md-select name="ratingInput" ng-model="vm.book.rating">
+                <md-option ng-repeat = "rating in vm.ratingList.list" value = "{{rating}}">{{rating}}</md-option>
+
             </md-select>
         </md-input-container>
         <md-input-container class="md-block">
             <label>Genre</label>
-            <input name="genreInput" ng-model="vm.book.genre" type="text">
+            <md-select name="genreInput" ng-model="vm.book.genre">
+                <md-option ng-repeat="genre in vm.genreList.list" value = "{{genre}}">{{genre}}</md-option>
+            </md-select>
         </md-input-container>
     </div>
     <div layout="row" layout-align="center start" flex>

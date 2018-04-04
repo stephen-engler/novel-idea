@@ -5,4 +5,6 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
 
     let self = this;
     self.addBook = booksService.addBook;
+    self.genreList = booksService.genreList;
+    self.ratingList = booksService.ratingList;
 }]);

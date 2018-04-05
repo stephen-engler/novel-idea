@@ -10,8 +10,9 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
     self.addBook = function(book){
         console.log('in appservice, addBook ', book);
         $http.post('/books',book).then(function(response){
-            console.log('addBook response from server ', response);
+
             self.getBooks();
+            swal('Congrats', `You're book was added`, 'success');
         }).catch(function(error){
             console.log('an error in addBook from server ', error);
         });
@@ -21,10 +22,45 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         console.log('in appservice, get books');
         $http.get('/books').then(function(response){
             self.books.list = response.data;
-            console.log(self.books.list);
         }).catch(function(error){
             console.log('an error in getBooks ', error);
         });
     };
+
+    self.confirmDelete = function(book){
+        console.log('in deletebook');
+        swal({
+            title: "Are you sure?",
+            text: "Once removed, this book is gone forever",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                    self.deleteBook(book);
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+
+    };
+
+    self.deleteBook = function(book){
+        let bookId = book.id;
+        console.log('in delete book id', bookId);
+
+        $http.delete('/books/'+bookId).then(function(response){
+            console.log('deleted');
+        }).catch(function(error){
+            console.log('an error in delete book ', error);
+        });
+    };
+
+    //load page
+    self.getBooks();
 
 }]);

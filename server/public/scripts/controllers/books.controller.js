@@ -7,4 +7,6 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     self.addBook = booksService.addBook;
     self.genreList = booksService.genreList;
     self.ratingList = booksService.ratingList;
+    self.books = booksService.books;
+    self.confirmDelete = booksService.confirmDelete;
 }]);

@@ -22,13 +22,17 @@ router.get('/', (req,res)=>{
     let queryText = `SELECT * FROM "books"`;
     pool.query(queryText)
         .then((response)=>{
-            console.log('in router get, response ', response);
             res.send(response.rows);
         })
         .catch((error)=>{
             console.log('in router get error from db ', error);
             res.sendStatus(500);
         });
+});
+
+router.delete('/:id', (req, res)=>{
+    console.log('in router delete ', req.params.id);
+    res.sendStatus(200);
 });
 
 

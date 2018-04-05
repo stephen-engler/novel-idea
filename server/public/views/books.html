@@ -34,3 +34,19 @@
         <md-button class="md-raised md-primary"type="submit">Submit</md-button>
     </div>
 </form>
+
+<div class = "container">
+    <div flex>
+        <h3>All Books</h3>
+        <div layout = "row" layout-wrap>
+            <div class = "md-block float-left" flex = "25" ng-repeat = "book in vm.books.list">
+                <div>{{book.title}}</div>
+                <div>By {{book.author}}</div>
+                <div>Published {{book.year}}</div>
+                <div>{{book.pages}} pages</div>
+                <div>{{book.rating}} stars</div>
+                <md-button class = "md-raised md-warn" ng-click="vm.confirmDelete(book)">Del</md-button>
+            </div>
+        </div>
+    </div>
+</div>

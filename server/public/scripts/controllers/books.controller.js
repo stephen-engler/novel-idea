@@ -9,4 +9,5 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     self.ratingList = booksService.ratingList;
     self.books = booksService.books;
     self.confirmDelete = booksService.confirmDelete;
+    self.getGenres = booksService.getGenres;
 }]);

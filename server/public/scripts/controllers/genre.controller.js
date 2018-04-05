@@ -3,7 +3,8 @@ app.controller('GenreController', ['BooksService', function (BooksService){
     
     let self = this;
     let booksService = BooksService;
-
+    self.genreList = booksService.genreList;
     self.addGenre = booksService.addGenre;
+    self.getGenre = booksService.getGenre;
     
 }]);

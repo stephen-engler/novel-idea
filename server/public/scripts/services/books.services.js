@@ -3,9 +3,10 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
 
     let self = this;
 
-    self.genreList = {list: ['Scifi', 'fantasy', 'noir', 'fiction', 'romance']};
+    // self.genreList = {list: ['Scifi', 'fantasy', 'noir', 'fiction', 'romance']};
     self.ratingList = {list:[0,1,2,3,4,5]};
     self.books = {list: []};
+    self.genreList = {list: []};
 
     self.addBook = function(book){
         console.log('in appservice, addBook ', book);
@@ -74,6 +75,7 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         console.log('in get Genre');
         $http.get('/books/genre').then(function(response){
             console.log('in getGenres response ', response);
+            self.genreList.list = response.data;
         }).catch(function(error){
             console.log('an error in getGenres ', error);
         });

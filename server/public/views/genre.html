@@ -7,3 +7,28 @@
         <md-button class="md-raised" type="submit">Submit</md-button>
     </div>
 </form>
+
+<div class="container">
+    <div layout = "row">
+        <div class="md-bock" flex>
+            Genres
+        </div>
+        <div class = "md-block" flex>
+            Amount
+        </div>
+        <div class = "md-block" flex>
+            Actions
+        </div>
+    </div>
+    <div ng-repeat = "genre in vm.genreList.list" layout = "row" flex>
+        <div class = "md-block" flex>
+            {{genre.genre}}
+        </div>
+        <div class = "md-block" flex>
+            test
+        </div>
+        <div class = "md-block" flex>
+            <i class="material-icons pointer" ng-click="vm.confirmDelete(book)">delete</i>
+        </div>
+    </div>
+</div>

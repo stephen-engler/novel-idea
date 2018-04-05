@@ -60,6 +60,7 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
             console.log('an error in delete book ', error);
         });
     };
+    //genre stuff
 
     self.addGenre = function(genreIn){
         console.log('in addGenre ', genreIn);
@@ -80,6 +81,18 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         });
     };
 
+    self.deleteGenre = function (genre) {
+        let genreId = genre.id;
+        console.log('in delete genre id', genreId);
+
+        $http.delete('/books/genre/' + genreId).then(function (response) {
+            console.log('deleted');
+            self.getGenres();
+        }).catch(function (error) {
+            console.log('an error in delete genre ', error);
+        });
+
+    };
     //load page
     self.getBooks();
     self.getGenres();

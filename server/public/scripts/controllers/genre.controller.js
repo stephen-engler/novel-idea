@@ -6,5 +6,6 @@ app.controller('GenreController', ['BooksService', function (BooksService){
     self.genreList = booksService.genreList;
     self.addGenre = booksService.addGenre;
     self.getGenre = booksService.getGenre;
+    self.deleteGenre = booksService.deleteGenre;
     
 }]);

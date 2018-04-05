@@ -73,5 +73,20 @@ router.get('/genre', (req,res)=>{
         });
 });
 
+router.delete('/genre/:id', (req,res)=>{
+    let id = req.params.id;
+    let queryText = 'DELETE FROM "genres" WHERE id = $1;';
+
+    pool.query(queryText, [id])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('an error in router delete ', error);
+            res.sendStatus(500);
+        });
+
+});
+
 
 module.exports = router;

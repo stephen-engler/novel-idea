@@ -70,7 +70,17 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         });
     };
 
+    self.getGenres = function(){
+        console.log('in get Genre');
+        $http.get('/books/genre').then(function(response){
+            console.log('in getGenres response ', response);
+        }).catch(function(error){
+            console.log('an error in getGenres ', error);
+        });
+    };
+
     //load page
     self.getBooks();
+    self.getGenres();
 
 }]);

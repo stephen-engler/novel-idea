@@ -59,5 +59,19 @@ router.post('/genre', (req,res)=>{
         });
 });
 
+router.get('/genre', (req,res)=>{
+    console.log('in genre get ');
+    
+    let queryText=`SELECT * FROM "genres";`;
+    pool.query(queryText)
+        .then((response) => {
+            res.send(response.rows);
+        })
+        .catch((error) => {
+            console.log('in router get error from db ', error);
+            res.sendStatus(500);
+        });
+});
+
 
 module.exports = router;

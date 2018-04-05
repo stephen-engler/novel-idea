@@ -44,5 +44,10 @@ router.delete('/:id', (req, res)=>{
         });
 });
 
+router.post('/genre', (req,res)=>{
+    console.log('in genre/post ', req.body);
+    res.sendStatus(200);
+});
+
 
 module.exports = router;

@@ -61,6 +61,15 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         });
     };
 
+    self.addGenre = function(genreIn){
+        console.log('in addGenre ', genreIn);
+        $http.post('/books/genre', genreIn).then(function(response){
+            //get genres
+        }).catch(function(error){
+            console.log('an error in addGenre from server ', error);
+        });
+    };
+
     //load page
     self.getBooks();
 

@@ -18,3 +18,7 @@ html {
     margin: 10px;
     background-color: lightgray;
 }
+
+.pointer {
+    cursor: pointer;
+}

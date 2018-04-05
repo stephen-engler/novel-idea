@@ -45,7 +45,8 @@
                 <div>Published {{book.year}}</div>
                 <div>{{book.pages}} pages</div>
                 <div>{{book.rating}} stars</div>
-                <md-button class = "md-raised md-warn" ng-click="vm.confirmDelete(book)">Del</md-button>
+                <div class = "pointer"><i class="material-icons" ng-click="vm.confirmDelete(book)">delete</i></div>
+                <!-- <md-button class = "md-raised md-warn" ng-click="vm.confirmDelete(book)">Del</md-button> -->
             </div>
         </div>
     </div>

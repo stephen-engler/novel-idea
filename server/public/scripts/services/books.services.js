@@ -38,12 +38,12 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    swal("Poof! Your imaginary file has been deleted!", {
+                    swal("Abra kadabra! Your book has been deleted!", {
                         icon: "success",
                     });
                     self.deleteBook(book);
                 } else {
-                    swal("Your imaginary file is safe!");
+                    swal("Your book is safe!");
                 }
             });
 
@@ -55,6 +55,7 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
 
         $http.delete('/books/'+bookId).then(function(response){
             console.log('deleted');
+            self.getBooks();
         }).catch(function(error){
             console.log('an error in delete book ', error);
         });

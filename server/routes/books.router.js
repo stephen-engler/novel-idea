@@ -32,7 +32,16 @@ router.get('/', (req,res)=>{
 
 router.delete('/:id', (req, res)=>{
     console.log('in router delete ', req.params.id);
-    res.sendStatus(200);
+    let queryText = 'DELETE FROM "books" WHERE id = $1;';
+
+    pool.query(queryText, [req.params.id])
+        .then((response)=>{
+            res.sendStatus(200);
+        })
+        .catch((error)=>{
+            console.log('an error in router delete ', error);
+            res.sendStatus(500);
+        });
 });
 
 

@@ -12,3 +12,10 @@ CREATE TABLE "books" (
 
 INSERT INTO "books" ("title", "author", "year", "pages", "image","rating")
 VALUES ('Hitchikers guide' , 'douglas adams', 1974, 1234, 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3454/9780345453747.jpg', 5);
+
+CREATE TABLE "genres" (
+    "id" serial primary key,
+	"genre" varchar (80)
+);
+
+INSERT INTO "genres" ("genre") VALUES ('fantasy'), ('scifi'), ('history'), ('fiction'), ('mystery'), ('romance');

@@ -46,7 +46,17 @@ router.delete('/:id', (req, res)=>{
 
 router.post('/genre', (req,res)=>{
     console.log('in genre/post ', req.body);
-    res.sendStatus(200);
+    let genre = req.body.type;
+    let queryText = `INSERT INTO "genres" ("genre") VALUES ($1);`;
+
+    pool.query(queryText,[genre])
+        .then((response)=>{
+            res.sendStatus(200);
+        })
+        .catch((error)=>{
+            console.log('an error in server post / genre ', error);
+            res.sendStatus(500);
+        });
 });
 
 

@@ -6,12 +6,14 @@ CREATE TABLE "books" (
     "author" varchar(120) not null,
     "year" integer,
     "pages" integer,
-    "image" varchar(200),
+    "genreId" integer,
     "rating" integer
 );
 
-INSERT INTO "books" ("title", "author", "year", "pages", "image","rating")
-VALUES ('Hitchikers guide' , 'douglas adams', 1974, 1234, 'https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/3454/9780345453747.jpg', 5);
+INSERT INTO "books" ("title", "author", "year", "pages", "genreId","rating")
+VALUES ('Hitchikers guide' , 'douglas adams', 1974, 1234, 2, 5),
+        ('Lord of the rings' , 'jrr token', 1912, 1234, 1, 5),
+		('50 shades of grey', 'i dont know', 2050, 123, 4,0);
 
 CREATE TABLE "genres" (
     "id" serial primary key,

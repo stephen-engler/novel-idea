@@ -3,7 +3,6 @@ app.service('BooksService', ['$http', '$mdDialog', function ($http, $mdDialog) {
 
     let self = this;
 
-    // self.genreList = {list: ['Scifi', 'fantasy', 'noir', 'fiction', 'romance']};
     self.ratingList = {list:[0,1,2,3,4,5]};
     self.books = {list: []};
     self.genreList = {list: []};

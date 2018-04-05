@@ -5,8 +5,8 @@ const pool = require('../modules/pool.js');
 router.post('/', (req,res)=>{
     console.log('in router/post response ', req.body);
     let book = req.body;
-    let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating") VALUES ($1, $2, $3, $4, $5);`;
-    pool.query(queryText,[book.title, book.author, book.year, book.pages, book.rating])
+    let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId") VALUES ($1, $2, $3, $4, $5, $6);`;
+    pool.query(queryText,[book.title, book.author, book.year, book.pages, book.rating, book.genre])
         .then((response)=>{
             res.sendStatus(200);
         })
@@ -62,7 +62,7 @@ router.post('/genre', (req,res)=>{
 router.get('/genre', (req,res)=>{
     console.log('in genre get ');
     
-    let queryText=`SELECT * FROM "genres";`;
+    let queryText =`SELECT "genre", "genres"."id", count("books"."genreId") FROM "genres" LEFT JOIN "books" ON "books"."genreId" = "genres"."id" GROUP BY "genres"."genre", "genres"."id";`;
     pool.query(queryText)
         .then((response) => {
             res.send(response.rows);

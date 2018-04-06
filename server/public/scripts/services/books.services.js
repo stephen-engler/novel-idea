@@ -12,8 +12,8 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         console.log('in appservice, addBook ', book);
 
         $http.post('/books',book).then(function(response){
-
             self.getBooks();
+            self.getGenres();
             swal('Congrats', `You're book was added`, 'success');
         }).catch(function(error){
             console.log('an error in addBook from server ', error);
@@ -44,28 +44,6 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         }).catch(function(error){
             console.log('an error in getBooks ', error);
         });
-    };
-
-    self.confirmDelete = function(book){
-        console.log('in deletebook');
-        swal({
-            title: "Are you sure?",
-            text: "Once removed, this book is gone forever",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Abra kadabra! Your book has been deleted!", {
-                        icon: "success",
-                    });
-                    self.deleteBook(book);
-                } else {
-                    swal("Your book is safe!");
-                }
-            });
-
     };
 
     self.deleteBook = function(book){

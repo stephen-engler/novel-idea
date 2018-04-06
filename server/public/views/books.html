@@ -68,7 +68,8 @@
                     <i class="material-icons pointer" ng-click="vm.updateBook(event, book)" flex>update</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, -1)" flex>arrow_downward</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, 1)" flex>arrow_upward</i>
-                    <i class="material-icons pointer" flex>favorite_border</i>
+                    <div ng-show="!book.isFavorited"><i class="material-icons pointer " ng-click="book.isFavorited = true"flex>favorite_border</i></div>
+                    <div ng-show="book.isFavorited"><i class="material-icons heart pointer" ng-click="book.isFavorited = false" flex>favorite</i></div>
                 </div>
             </div>
         </div>

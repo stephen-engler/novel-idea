@@ -40,6 +40,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         $http.delete('/books/'+bookId).then(function(response){
             console.log('deleted');
             self.getBooks();
+            self.getGenres();
         }).catch(function(error){
             console.log('an error in delete book ', error);
         });
@@ -56,6 +57,24 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
              .catch(function(error){
                  console.log('an error updating star ', error);
              });
+    };
+
+    self.updateBook=function(book){
+        console.log(book);
+        $http({
+            method: 'PUT',
+            url:'/books/'+ book.id,
+            data: book,
+            params: {type: 'all'}
+        })
+        .then(function(response){
+            self.getBooks();
+            self.getGenres();
+            swal('Yay!', 'The book was updated', 'success');
+        })
+        .catch(function(error){
+            console.log('an error in updateBook ', error);
+        });
     };
 
     //genre routes
@@ -92,6 +111,10 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             return error;
         });
 
+    };
+
+    self.hide = function () {
+        $mdDialog.hide();
     };
 
     //load page

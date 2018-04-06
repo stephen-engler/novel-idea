@@ -34,7 +34,7 @@ router.post('/', (req,res)=>{
 
 router.get('/', (req,res)=>{
     console.log('in router/get');
-    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "genres"."genre" FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id";`;
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre" FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id";`;
     pool.query(queryText)
         .then((response)=>{
             res.send(response.rows);
@@ -61,9 +61,24 @@ router.delete('/:id', (req, res)=>{
 
 //updates the rating of the book in the db
 router.put('/:id', (req, res)=>{
-    console.log('in router book update ', req.body + 'id', req.params.id);
-    let queryText = 'UPDATE "books" SET "rating"=$1 WHERE "id" = $2';
-    pool.query(queryText, [req.body.rating, req.params.id])
+    let queryText='';
+    let array =[];
+    let book = req.body.book;
+    // console.log('in router book update ', req.body + 'id', req.params.id);
+    // console.log('in router book put ', req.query);
+    console.log(book);
+    // console.log(req.params.id);
+
+    if(req.query.type == 'all'){
+        console.log('in if');
+        queryText = `UPDATE "books" SET "rating"=$1, "author"=$2, "year"=$3, "pages"=$4, "title"=$5, "genreId"=$6 WHERE "id" = $7;`;
+        array = [book.rating, book.author, book.year, book.pages, book.title, book.genreId, book.id];
+    }
+    else{
+        queryText = 'UPDATE "books" SET "rating"=$1 WHERE "id" = $2';
+        array = [req.body.rating, req.params.id];
+    }
+    pool.query(queryText, array)
         .then((response)=>{
             res.sendStatus(200);
         })

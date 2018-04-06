@@ -4,6 +4,7 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     let booksService = BooksService;
 
     let self = this;
+    self.reverse = false;
     //list of genres from server
     self.genreList = booksService.genreList;
     //list of ratings to loop over 

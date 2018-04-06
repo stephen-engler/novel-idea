@@ -16,4 +16,11 @@ app.config(function ($routeProvider) {
         .otherwise(
             { redirectTo: '/books' }
         );
+
+
+
+app.config(function ($themeProvider){
+    $themeProvider.theme('default')
+        .primaryPalette('green');
+    });
 });

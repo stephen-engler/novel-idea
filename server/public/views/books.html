@@ -20,7 +20,6 @@
             <label>Rating</label>
             <md-select name="ratingInput" ng-model="vm.book.rating">
                 <md-option ng-repeat = "rating in vm.ratingList.list" value = "{{rating}}">{{rating}}</md-option>
-
             </md-select>
         </md-input-container>
         <md-input-container class="md-block">
@@ -37,9 +36,22 @@
 
 <div class = "container">
     <div flex>
-        <h3>All Books</h3>
+        <div layout = "row">
+            <h3 flex>All Books</h3>
+            
+            <md-input-container class="md-block" flex>
+                <label>Order By</label>
+                <md-select name="orderByInput" ng-model = "vm.orderBy">
+                    <md-option value="author">Author</md-option>
+                    <md-option value="title">Title</md-option>
+                    <md-option value="rating">Rating</md-option>
+                </md-select>
+            </md-input-container>
+            <i class="material-icons pointer" ng-click="vm.reverse = !vm.reverse">swap_vert</i>
+        </div>
+
         <div layout = "row" layout-wrap layout-align="center start">
-            <div class = "md-block float-left md-whiteframe-6dp"  flex = "20" ng-repeat = "book in vm.books.list" height=400px>
+            <div class = "md-block float-left md-whiteframe-6dp"  flex = "20" ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse" height=400px>
                 <div><image ng-src="{{book.imageurl}}"</div>
                 <div>{{book.title}}</div>
                 <div>By {{book.author}}</div>

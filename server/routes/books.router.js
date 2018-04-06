@@ -5,8 +5,8 @@ const pool = require('../modules/pool.js');
 router.post('/', (req,res)=>{
     console.log('in router/post response ', req.body);
     let book = req.body;
-    let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId") VALUES ($1, $2, $3, $4, $5, $6);`;
-    pool.query(queryText,[book.title, book.author, book.year, book.pages, book.rating, book.genre])
+    let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId","imageurl") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+    pool.query(queryText,[book.title, book.author, book.year, book.pages, book.rating, book.genre, book.imageurl])
         .then((response)=>{
             res.sendStatus(200);
         })

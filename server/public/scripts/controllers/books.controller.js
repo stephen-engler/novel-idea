@@ -10,4 +10,5 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     self.books = booksService.books;
     self.confirmDelete = booksService.confirmDelete;
     self.getGenres = booksService.getGenres;
+    self.getImage = booksService.getImage;
 }]);

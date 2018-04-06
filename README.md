@@ -7,13 +7,15 @@ CREATE TABLE "books" (
     "year" integer,
     "pages" integer,
     "genreId" integer,
-    "rating" integer
+    "rating" integer,
+	"imageurl" varchar(500)
 );
 
-INSERT INTO "books" ("title", "author", "year", "pages", "genreId","rating")
-VALUES ('Hitchikers guide' , 'douglas adams', 1974, 1234, 2, 5),
-        ('Lord of the rings' , 'jrr token', 1912, 1234, 1, 5),
-		('50 shades of grey', 'i dont know', 2050, 123, 4,0);
+INSERT INTO "books" ("title", "author", "year", "pages", "genreId","rating","imageurl")
+VALUES 	('Hitchikers guide' , 'douglas adams', 1974, 1234, 2, 5,'https://books.google.com/books/content?id=j24GMN0OtS8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'),
+ 		('the fellowship of the rings' , 'jrr token', 1912, 1234, 1, 5, 'https://books.google.com/books/content?id=5QRZ4z6A1WwC&printsec=frontcover&img=1&zoom=1&source=gbs_api'),
+		('hyperion', 'dan simmons', 2050, 123, 4,0, 'https://books.google.com/books/content?id=u4R_FstZDEgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api');
+
 
 CREATE TABLE "genres" (
     "id" serial primary key,

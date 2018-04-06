@@ -4,7 +4,6 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     let booksService = BooksService;
 
     let self = this;
-    //self.addBook = booksService.addBook;
     //list of genres from server
     self.genreList = booksService.genreList;
     //list of ratings to loop over 
@@ -13,9 +12,10 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     self.books = booksService.books;
     //gets Genres
     self.getGenres = booksService.getGenres;
-    //gets image from api 
-    self.getImage = booksService.getImage;
+    //updates star
+    self.updateStar = booksService.updateStar;
 
+    //confirms delete from user with swal
     self.confirmDelete = function (book) {
         console.log('in deletebook');
         swal({
@@ -36,11 +36,10 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
                 }
             });
     };
-
+    //adds book and sweetalerts the promise
     self.addBook = function(book){
         console.log('addBook');
         booksService.addBook(book).then(function(result){
-            console.log('HERE');
             swal('Congrats', `You're book was added`, 'success');
         }).catch(function(error){
             swal('oops', 'something went wrong');

@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 const pool = require('../modules/pool.js');
 let axios = require('axios');
-
+//book routes
 router.post('/', (req,res)=>{
     console.log('in router/post response ', req.body);
     let book = req.body;
@@ -12,7 +12,7 @@ router.post('/', (req,res)=>{
     //makes api requesst to get the image of teh book
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=AIzaSyAg_RLsWR31WbP-7Ad3l21cjYMFSOz-0z4`)
         .then(function (response) {
-            
+
             book.imageurl = response.data.items[0].volumeInfo.imageLinks.thumbnail;
 
             //once image is reseived, book is added to db
@@ -59,6 +59,21 @@ router.delete('/:id', (req, res)=>{
         });
 });
 
+//updates the rating of the book in the db
+router.put('/:id', (req, res)=>{
+    console.log('in router book update ', req.body + 'id', req.params.id);
+    let queryText = 'UPDATE "books" SET "rating"=$1 WHERE "id" = $2';
+    pool.query(queryText, [req.body.rating, req.params.id])
+        .then((response)=>{
+            res.sendStatus(200);
+        })
+        .catch((error)=>{
+            console.log('an error in router put books ', error);
+            res.sendStatus(500);
+        });
+
+});
+//genre routes
 router.post('/genre', (req,res)=>{
     console.log('in genre/post ', req.body);
     let genre = req.body.type;
@@ -100,7 +115,6 @@ router.delete('/genre/:id', (req,res)=>{
             console.log('an error in router delete ', error);
             res.sendStatus(500);
         });
-
 });
 
 

@@ -49,8 +49,8 @@
                 <div layout = "row">
                     <i class="material-icons pointer" ng-click="vm.confirmDelete(book)" flex>delete</i>
                     <i class="material-icons pointer" flex>update</i>
-                    <i class="material-icons pointer" flex>arrow_downward</i>
-                    <i class="material-icons pointer" flex>arrow_upward</i>
+                    <i class="material-icons pointer" ng-click="vm.updateStar(book, -1)" flex>arrow_downward</i>
+                    <i class="material-icons pointer" ng-click="vm.updateStar(book, 1)" flex>arrow_upward</i>
                     <i class="material-icons pointer" flex>favorite_border</i>
                 </div>
             </div>

@@ -7,7 +7,8 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     self.books = {list: []};
     self.genreList = {list: []};
 
-
+    //book routes
+    //sends post to server with book
     self.addBook = function(book){
         console.log('in appservice, addBook ', book);
 
@@ -20,23 +21,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             return error;
         });
     };
-
-    self.getImage= function(book){
-        //takes book title and author makes it able to go in the url
-        let title = book.title.replace(/\s/g, '+');
-        let author = book.author.replace(/\s/g, '+');
-
-        $http.get( `https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=AIzaSyAg_RLsWR31WbP-7Ad3l21cjYMFSOz-0z4`)
-             .then(function(response){
-                 book.imageurl = response.data.items[0].volumeInfo.imageLinks.thumbnail;
-                 self.addBook(book);
-             })
-             .catch(function(error){
-                 console.log('in get image, error ', error);
-             });
-    };
-
-
+    //get request sets self.books.list equal to response data
     self.getBooks = function(){
         console.log('in appservice, get books');
         $http.get('/books').then(function(response){
@@ -46,7 +31,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error in getBooks ', error);
         });
     };
-
+    //delete request by id
     self.deleteBook = function(book){
         let bookId = book.id;
         console.log('in delete book id', bookId);
@@ -58,7 +43,21 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error in delete book ', error);
         });
     };
-    //genre stuff
+    // put request to server expects the book 
+    self.updateStar = function(book, value){
+        console.log('in updateStart, ', book + ' ', value);
+
+        $http.put('/books/'+book.id, {rating: book.rating + value})
+             .then(function(response){
+                 console.log('response from server in update start ', response);
+                 self.getBooks();
+             })
+             .catch(function(error){
+                 console.log('an error updating star ', error);
+             });
+    };
+
+    //genre routes
 
     self.addGenre = function(genreIn){
         console.log('in addGenre ', genreIn);
@@ -83,17 +82,19 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         let genreId = genre.id;
         console.log('in delete genre id', genreId);
 
-        $http.delete('/books/genre/' + genreId).then(function (response) {
+        return $http.delete('/books/genre/' + genreId).then(function (response) {
             console.log('deleted');
             self.getGenres();
+            return response;
         }).catch(function (error) {
             console.log('an error in delete genre ', error);
+            return error;
         });
 
     };
+
     //load page
     self.getBooks();
     self.getGenres();
-    //self.getImage();
 
 }]);

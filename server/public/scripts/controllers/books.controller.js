@@ -1,4 +1,4 @@
-app.controller('BooksController', [ 'BooksService',function (BooksService) {
+app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksService, $mdDialog) {
     console.log('books controller loaded');
 
     let booksService = BooksService;
@@ -15,6 +15,7 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     self.getGenres = booksService.getGenres;
     //updates star
     self.updateStar = booksService.updateStar;
+    
 
     //confirms delete from user with swal
     self.confirmDelete = function (book) {
@@ -45,5 +46,23 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
         }).catch(function(error){
             swal('oops', 'something went wrong');
         });
+    };
+
+    self.updateBook = function(ev, book){
+        booksService.bookToUpdate.book = book;
+        $mdDialog.show({
+            controller: "UpdateController as vm",
+            templateUrl: '/views/update.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            ariaLabel: 'update'
+        })
+            .then(function (response) {
+                console.log('test');
+                $mdDialog.hide([response]);
+            }, function () {
+                console.log('move along');
+            });
     };
 }]);

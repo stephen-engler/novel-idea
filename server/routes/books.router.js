@@ -34,7 +34,7 @@ router.post('/', (req,res)=>{
 
 router.get('/', (req,res)=>{
     console.log('in router/get');
-    let queryText = `SELECT * FROM "books"`;
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "genres"."genre" FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id";`;
     pool.query(queryText)
         .then((response)=>{
             res.send(response.rows);

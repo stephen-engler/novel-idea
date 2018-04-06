@@ -6,6 +6,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     self.ratingList = {list:[0,1,2,3,4,5]};
     self.books = {list: []};
     self.genreList = {list: []};
+    self.bookToUpdate = {book:{}};
 
     //book routes
     //sends post to server with book
@@ -45,7 +46,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     };
     // put request to server expects the book 
     self.updateStar = function(book, value){
-        console.log('in updateStart, ', book + ' ', value);
+        console.log('in updateStart, ', book);
 
         $http.put('/books/'+book.id, {rating: book.rating + value})
              .then(function(response){

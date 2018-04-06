@@ -1,0 +1,48 @@
+<md-dialog>
+    <md-dialog-content>
+        <form ng-submit="vm.addBook(vm.book)">
+            <div layout="row" layout-align="center start">
+                <md-input-container class="md-block">
+                    <label>Title</label>
+                    <input name="titleInput" ng-model="vm.bookToUpdate.book.title" type="text" ng-init="vm.bookToUpdate.book.title">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Author</label>
+                    <input name="authorInput" ng-model="vm.bookToUpdate.book.author" type="text" ng-init="vm.bookToUpdate.book.author">
+                </md-input-container>
+            </div>
+            <div layout = "row">
+                <md-input-container class="md-block">
+                    <label>Pages</label>
+                    <input name="pagesInput" ng-model="vm.bookToUpdate.book.pages" type="number" ng-init="vm.bookToUpdate.book.pages">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Year</label>
+                    <input name="yearInput" ng-model="vm.bookToUpdate.book.year" type="number" ng-init="vm.bookToUpdate.book.year">
+                </md-input-container>
+             </div>
+             <div layout = "row">
+                <md-input-container class="md-block" flex>
+                    <label>Rating</label>
+                    <md-select name="ratingInput" ng-model="vm.bookToUpdate.book.rating" type="number" ng-init="vm.bookToUpdate.book.rating">
+                        <md-option value="0">0</md-option>
+                        <md-option value="1">1</md-option>
+                        <md-option value="2">2</md-option>
+                        <md-option value="3">3</md-option>
+                        <md-option value="4">4</md-option>
+                        <md-option value="5">5</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" flex>
+                    <label>Genre</label>
+                    <md-select name="genreInput" ng-model="vm.bookToUpdate.book.genre" type= "text" ng-init="vm.bookToUpdate.book.genre">
+                        <md-option ng-repeat="genre in vm.genreList.list" value="{{genre.id}}">{{genre.genre}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="center start" flex>
+                <input type="submit">
+            </div>
+        </form>
+    </md-dialog-content>
+</md-dialog>

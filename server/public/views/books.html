@@ -38,7 +38,12 @@
     <div flex>
         <div layout = "row">
             <h3 flex>All Books</h3>
-            
+            <md-input-container class = "md-block" flex>
+                <label>Search</label>
+                <input name="search" ng-model="vm.search" type=text>
+
+            </md-input-container>
+                            <i class="material-icons">search</i>
             <md-input-container class="md-block" flex>
                 <label>Order By</label>
                 <md-select name="orderByInput" ng-model = "vm.orderBy">
@@ -47,11 +52,11 @@
                     <md-option value="rating">Rating</md-option>
                 </md-select>
             </md-input-container>
-            <i class="material-icons pointer" ng-click="vm.reverse = !vm.reverse">swap_vert</i>
+            <i class="material-icons pointer" ng-click="vm.reverse = !vm.reverse" flex>swap_vert</i>
         </div>
 
         <div layout = "row" layout-wrap layout-align="center start">
-            <div class = "md-block float-left md-whiteframe-6dp"  flex = "20" ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse" height=400px>
+            <div class = "md-block float-left md-whiteframe-6dp"  flex = "20" ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse | filter: vm.search" height=400px>
                 <div><image ng-src="{{book.imageurl}}"</div>
                 <div>{{book.title}}</div>
                 <div>By {{book.author}}</div>
@@ -60,7 +65,7 @@
                 <div>{{book.rating}} stars</div>
                 <div layout = "row">
                     <i class="material-icons pointer" ng-click="vm.confirmDelete(book)" flex>delete</i>
-                    <i class="material-icons pointer" flex>update</i>
+                    <i class="material-icons pointer" ng-click="vm.updateBook(event, book)" flex>update</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, -1)" flex>arrow_downward</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, 1)" flex>arrow_upward</i>
                     <i class="material-icons pointer" flex>favorite_border</i>

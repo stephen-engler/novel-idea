@@ -13,6 +13,10 @@ app.config(function ($routeProvider) {
             templateUrl: './views/genre.html',
             controller: 'GenreController as vm'
         })
+        .when('/favorites',{
+            templateUrl:'./views/favorites.html',
+            controller: 'FavoritesController as vm'
+        })
         .otherwise(
             { redirectTo: '/books' }
         );

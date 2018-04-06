@@ -38,8 +38,8 @@
 <div class = "container">
     <div flex>
         <h3>All Books</h3>
-        <div layout = "row" layout-wrap>
-            <div class = "md-block float-left" flex = "25" ng-repeat = "book in vm.books.list">
+        <div layout = "row" layout-wrap layout-align="center start">
+            <div class = "md-block float-left md-whiteframe-6dp"  flex = "20" ng-repeat = "book in vm.books.list" height=400px>
                 <div><image ng-src="{{book.imageurl}}"</div>
                 <div>{{book.title}}</div>
                 <div>By {{book.author}}</div>

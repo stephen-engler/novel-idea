@@ -9,7 +9,7 @@ html {
 }
 
 .container {
-    max-width: 780px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -21,4 +21,22 @@ html {
 
 .pointer {
     cursor: pointer;
+}
+
+.header {
+    background-image: url('/images/headerbackground.jpg');
+    background-position: bottom;
+    background-size: contain;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+}
+
+.titlehead {
+    margin: 0;
+    font-size: 12em;
+    text-align: center;
+    opacity: 0.75;
+    color: white;
+
 }

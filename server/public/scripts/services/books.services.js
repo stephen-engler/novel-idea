@@ -11,12 +11,13 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     self.addBook = function(book){
         console.log('in appservice, addBook ', book);
 
-        $http.post('/books',book).then(function(response){
+        return $http.post('/books',book).then(function(response){
             self.getBooks();
             self.getGenres();
-            swal('Congrats', `You're book was added`, 'success');
+            return response;
         }).catch(function(error){
             console.log('an error in addBook from server ', error);
+            return error;
         });
     };
 

@@ -1,20 +1,35 @@
 let express = require('express');
 let router = express.Router();
 const pool = require('../modules/pool.js');
+let axios = require('axios');
 
 router.post('/', (req,res)=>{
     console.log('in router/post response ', req.body);
     let book = req.body;
-    let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId","imageurl") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-    pool.query(queryText,[book.title, book.author, book.year, book.pages, book.rating, book.genre, book.imageurl])
-        .then((response)=>{
-            res.sendStatus(200);
+    //takes book title and author makes it able to go in the url
+    let title = book.title.replace(/\s/g, '+');
+    let author = book.author.replace(/\s/g, '+');
+    //makes api requesst to get the image of teh book
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${author}&key=AIzaSyAg_RLsWR31WbP-7Ad3l21cjYMFSOz-0z4`)
+        .then(function (response) {
+            
+            book.imageurl = response.data.items[0].volumeInfo.imageLinks.thumbnail;
+
+            //once image is reseived, book is added to db
+            let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId","imageurl") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+            pool.query(queryText, [book.title, book.author, book.year, book.pages, book.rating, book.genre, book.imageurl])
+                .then((response) => {
+                    res.sendStatus(200);
+                })
+                .catch((error) => {
+                    console.log('in router/post an error in query ', error);
+                    res.sendStatus(500);
+                });
         })
-        .catch((error)=>{
-            console.log('in router/post an error in query ', error);
+        .catch(function (error) {
+            console.log('in get image, error ', error);
             res.sendStatus(500);
         });
-
 });
 
 router.get('/', (req,res)=>{

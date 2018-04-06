@@ -4,11 +4,16 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
     let booksService = BooksService;
 
     let self = this;
-    self.addBook = booksService.addBook;
+    //self.addBook = booksService.addBook;
+    //list of genres from server
     self.genreList = booksService.genreList;
+    //list of ratings to loop over 
     self.ratingList = booksService.ratingList;
+    //all books in books.list
     self.books = booksService.books;
+    //gets Genres
     self.getGenres = booksService.getGenres;
+    //gets image from api 
     self.getImage = booksService.getImage;
 
     self.confirmDelete = function (book) {
@@ -30,5 +35,15 @@ app.controller('BooksController', [ 'BooksService',function (BooksService) {
                     swal("Your book is safe!");
                 }
             });
+    };
+
+    self.addBook = function(book){
+        console.log('addBook');
+        booksService.addBook(book).then(function(result){
+            console.log('HERE');
+            swal('Congrats', `You're book was added`, 'success');
+        }).catch(function(error){
+            swal('oops', 'something went wrong');
+        });
     };
 }]);

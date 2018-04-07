@@ -1,27 +1,34 @@
 <form ng-submit="vm.addBook(vm.book)">
+    <!-- inputs -->
     <div layout="row" layout-align="center start">
+        <!-- title -->
         <md-input-container class="md-block">
             <label>Title</label>
             <input name="titleInput" ng-model="vm.book.title" type="text">
         </md-input-container>
+        <!-- author -->
         <md-input-container class="md-block">
             <label>Author</label>
             <input name="authorInput" ng-model="vm.book.author" type="text">
         </md-input-container>
+        <!-- pages -->
         <md-input-container class="md-block">
             <label>Pages</label>
             <input name="pagesInput" ng-model="vm.book.pages" type="number">
         </md-input-container>
+        <!-- year -->
         <md-input-container class="md-block">
             <label>Year</label>
             <input name="yearInput" ng-model="vm.book.year" type="number">
         </md-input-container>
+        <!-- rating -->
         <md-input-container class="md-block">
             <label>Rating</label>
             <md-select name="ratingInput" ng-model="vm.book.rating">
                 <md-option ng-repeat = "rating in vm.ratingList.list" value = "{{rating}}">{{rating}}</md-option>
             </md-select>
         </md-input-container>
+        <!-- genre -->
         <md-input-container class="md-block">
             <label>Genre</label>
             <md-select name="genreInput" ng-model="vm.book.genre">
@@ -29,6 +36,7 @@
             </md-select>
         </md-input-container>
     </div>
+    <!-- input button -->
     <div layout="row" layout-align="center start" flex>
         <md-button class="md-raised"type="submit">Submit</md-button>
     </div>
@@ -38,12 +46,14 @@
     <div flex>
         <div layout = "row">
             <h3 flex>All Books</h3>
+            <!-- search -->
             <md-input-container class = "md-block" flex>
                 <label>Search</label>
                 <input name="search" ng-model="vm.search" type=text>
 
             </md-input-container>
-                            <i class="material-icons">search</i>
+                <i class="material-icons">search</i>
+            <!-- order by -->
             <md-input-container class="md-block" flex>
                 <label>Order By</label>
                 <md-select name="orderByInput" ng-model = "vm.orderBy">
@@ -54,7 +64,7 @@
             </md-input-container>
             <i class="material-icons pointer" ng-click="vm.reverse = !vm.reverse" flex>swap_vert</i>
         </div>
-
+        <!-- all books -->
         <div layout = "row"  layout-wrap layout-align="center start" flex>
             <div class = "md-block float-left md-whiteframe-6dp" flex='20'ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse | filter: vm.search" height=400px>
                 <div><image class = "centerImage" ng-src="{{book.imageurl}}"></image></div>
@@ -63,9 +73,10 @@
                 <div>Published {{book.year}}</div>
                 <div>{{book.pages}} pages</div>
                 <div>{{book.rating}} stars</div>
+                <!-- icons -->
                 <div layout = "row">
                     <i class="material-icons pointer" ng-click="vm.confirmDelete(book)" flex>delete</i>
-                    <i class="material-icons pointer" ng-click="vm.updateBook(event, book)" flex>update</i>
+                    <i class="material-icons pointer" ng-click="vm.updateBook(event, book)" flex>mode_edit</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, -1)" flex>arrow_downward</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, 1)" flex>arrow_upward</i>
                     <div ng-show="!book.isFavorited"><i class="material-icons pointer " ng-click="book.isFavorited = true"flex>favorite_border</i></div>

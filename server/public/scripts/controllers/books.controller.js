@@ -4,15 +4,17 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
     let booksService = BooksService;
 
     let self = this;
-    self.reverse = false;
-    //list of genres from server
-    self.genreList = booksService.genreList;
-    //list of ratings to loop over 
-    self.ratingList = booksService.ratingList;
+    
     //all books in books.list
     self.books = booksService.books;
+    //list of genre's from teh server
+    self.genreList = booksService.genreList;
     //gets Genres
     self.getGenres = booksService.getGenres;
+    //list of ratings to loop over 
+    self.ratingList = booksService.ratingList;
+    //sets reverse for the view
+    self.reverse = false;
     //updates star
     self.updateStar = booksService.updateStar;
     
@@ -47,7 +49,7 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
             swal('oops', 'something went wrong');
         });
     };
-
+    //Shows dialog box for updating book
     self.updateBook = function(ev, book){
         booksService.bookToUpdate.book = book;
         $mdDialog.show({
@@ -57,7 +59,7 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
             targetEvent: ev,
             clickOutsideToClose: true,
             ariaLabel: 'update'
-        })
+        })  //once promise is returned hides the dialog
             .then(function (response) {
                 console.log('test');
                 $mdDialog.hide([response]);

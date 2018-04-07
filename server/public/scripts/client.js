@@ -1,6 +1,6 @@
 let app = angular.module('App', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
-
+//configs client side routes
 app.config(function ($routeProvider) {
     console.log('confic loaded');
 

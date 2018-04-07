@@ -155,6 +155,18 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         });
     };
 
+    self.removeFavorite = function(book){
+        console.log('in remove favorites');
+        $http.delete('/books/favorites/'+book.favBookId)
+            .then(function(response){
+                self.getBooks();
+                self.getFavorites();
+            })
+            .catch(function(error){
+                console.log('an error in remove favorites from server ', error);
+            });
+    };
+
     //load page
     self.getBooks();
     self.getGenres();

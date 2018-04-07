@@ -3,5 +3,6 @@ app.controller('FavoritesController', ['BooksService', function(BooksService){
     let self = this;
     let booksService = BooksService;
     self.books = booksService.books;
-    
+    self.removeFavorite = booksService.removeFavorite;
+
 }]);

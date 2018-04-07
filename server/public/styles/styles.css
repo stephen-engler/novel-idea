@@ -51,3 +51,10 @@ html {
         margin: auto;
         width: 100%;
 }
+
+.navBar {
+        background-color: antiquewhite;
+        position: fixed;
+        top: 0;
+        width: 100%;
+}

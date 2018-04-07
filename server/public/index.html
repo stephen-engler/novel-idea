@@ -31,15 +31,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body ng-app="App">
-    <div class="md-block header" flex>
-        <h2 class="titlehead">Novel Idea</h2>
-        <i class="material-icons">face</i>
-    </div>
     <div>
         <div ng-include=" 'views/templates/nav.html  ' "></div>
+        <div class="md-block header" flex>
+            <h2 class="titlehead">Novel Idea</h2>
+        </div>
         <main ng-view>
-    
-    
         </main>
     </div>
 </body>

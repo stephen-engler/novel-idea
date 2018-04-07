@@ -23,7 +23,7 @@
         </div>
     </div>
     <!-- table of genres and count -->
-    <div ng-repeat = "genre in vm.genreList.list" layout = "row" flex>
+    <div ng-repeat = "genre in vm.genreList.list" layout = "row" flex ng-click="genre.show = true">
         <div class = "md-block" flex>
             {{genre.genre}}
         </div>
@@ -32,6 +32,12 @@
         </div>
         <div class = "md-block" flex>
             <i class="material-icons pointer" ng-click="vm.deleteGenre(genre)">delete</i>
+        </div>
+        <div ng-show="genre.show">
+            <div ng-repeat="book in vm.books.list | filter: genre.genre">
+                <div>{{book.title}}</div>
+            </div>
+
         </div>
     </div>
 </div>

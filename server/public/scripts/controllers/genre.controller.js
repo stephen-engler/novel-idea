@@ -10,6 +10,9 @@ app.controller('GenreController', ['BooksService', function (BooksService){
     self.addGenre = booksService.addGenre;
     //gets genres from server
     self.getGenre = booksService.getGenre;
+    //list of books
+    self.books = booksService.books;
+    self.show = {list: false};
 
     //checks if the genre is in use
     self.deleteGenre = function(genre){

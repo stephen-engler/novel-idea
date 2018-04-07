@@ -34,7 +34,8 @@ router.post('/', (req,res)=>{
 
 router.get('/', (req,res)=>{
     console.log('in router/get');
-    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre" FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id";`;
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre", "favorites"."favBookId"
+ FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id" LEFT JOIN "favorites" ON "books"."id" = "favorites"."favBookId";`;
     pool.query(queryText)
         .then((response)=>{
             res.send(response.rows);

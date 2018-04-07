@@ -4,7 +4,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     let self = this;
 
     self.ratingList = {list:[0,1,2,3,4,5]};
-    self.books = {list: []};
+    self.books = {list: [], favorites: []};
     self.genreList = {list: []};
     self.bookToUpdate = {book:{}};
 
@@ -116,7 +116,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     self.hide = function () {
         $mdDialog.hide();
     };
-
+    //Favorite routes
     self.addFavorite = function(book){
         console.log('in add favorites ');
         $http({
@@ -135,9 +135,25 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error in adding favorites ', error);
         });
     };
+    
+    self.getFavorites = function(){
+        console.log('in get favorites');
+        $http({
+            method: 'GET',
+            url: '/books/favorites',
+        })
+        .then(function(response){
+            console.log('in get favorites response from server ', response.data);
+            self.books.favorites = response.data;
+        })
+        .catch(function(error){
+            console.log('an error from server in get favorites ', error);
+        });
+    };
 
     //load page
     self.getBooks();
     self.getGenres();
+    self.getFavorites();
 
 }]);

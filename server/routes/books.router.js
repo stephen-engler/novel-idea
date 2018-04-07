@@ -147,5 +147,10 @@ router.post('/favorite', (req, res)=>{
         });
 });
 
+router.get('/favorites', (req, res)=>{
+    console.log('in router get favorites ');
+    res.sendStatus(200);
+});
+
 
 module.exports = router;

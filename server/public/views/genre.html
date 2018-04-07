@@ -23,21 +23,29 @@
         </div>
     </div>
     <!-- table of genres and count -->
-    <div ng-repeat = "genre in vm.genreList.list" layout = "row" flex ng-click="genre.show = true">
-        <div class = "md-block" flex>
-            {{genre.genre}}
-        </div>
-        <div class = "md-block" flex>
-            {{genre.count}}
-        </div>
-        <div class = "md-block" flex>
-            <i class="material-icons pointer" ng-click="vm.deleteGenre(genre)">delete</i>
-        </div>
-        <div ng-show="genre.show">
-            <div ng-repeat="book in vm.books.list | filter: genre.genre">
-                <div>{{book.title}}</div>
+    <div ng-repeat = "genre in vm.genreList.list"flex ng-click="genre.show = !genre.show">
+        <div layout = "row">
+            <div class="md-block" flex>
+                {{genre.genre}}
             </div>
-
+            <div class="md-block" flex>
+                {{genre.count}}
+            </div>
+            <div class="md-block" flex>
+                <i class="material-icons pointer" ng-click="vm.deleteGenre(genre)">delete</i>
+            </div>
+        </div>
+        <div ng-show="genre.show" layout = "row" layout-wrap layout-align="center start" flex>
+            <div ng-repeat="book in vm.books.list | filter: genre.genre" class="md-block float-left md-whiteframe-6dp" flex='20'>
+                <div>
+                    <image class="centerImage" ng-src="{{book.imageurl}}"></image>
+                </div>
+                <div>{{book.title}}</div>
+                <div>By {{book.author}}</div>
+                <div>Published {{book.year}}</div>
+                <div>{{book.pages}} pages</div>
+                <div>{{book.rating}} stars</div>
+            </div>
         </div>
     </div>
 </div>

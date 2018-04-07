@@ -134,8 +134,16 @@ router.delete('/genre/:id', (req,res)=>{
 
 //favorite routes
 router.post('/favorite', (req, res)=>{
-    console.log('in router post favorite, ', req.body)
-    res.sendStatus(200);
+    console.log('in router post favorite, ', req.body);
+    let queryText = `INSERT INTO "favorites" ("favBookId") VALUES ($1);`;
+    pool.query((queryText), [req.body.id])
+        .then((response)=>{
+            res.sendStatus(200);
+        })
+        .catch((error)=>{
+            console.log('an error from database in router post favorites ', error);
+            res.sendStatus(500);
+        });
 });
 
 

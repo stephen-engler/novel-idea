@@ -118,7 +118,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     };
 
     self.addFavorite = function(book){
-
+        console.log('in add favorites ');
         $http({
             method: 'POST',
             url:'/books/favorite',
@@ -127,6 +127,8 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             params: {type: 'addFavorite'}
         })
         .then(function(response){
+            console.log('in response from server in add favorites ', response);
+            self.getBooks();
             //get books
         })
         .catch(function(error){

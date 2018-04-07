@@ -17,5 +17,5 @@ app.use('/books', BooksRouter);
 app.use(express.static('server/public'));
 //set up server
 app.listen(PORT, () => {
-    console.log(`server running on ${port}`);
+    console.log(`server running on ${PORT}`);
 });

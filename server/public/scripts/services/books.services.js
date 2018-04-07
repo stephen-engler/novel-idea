@@ -117,6 +117,23 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         $mdDialog.hide();
     };
 
+    self.addFavorite = function(book){
+
+        $http({
+            method: 'POST',
+            url:'/books/favorite',
+            data: book,
+            //sets type of put request as param
+            params: {type: 'addFavorite'}
+        })
+        .then(function(response){
+            //get books
+        })
+        .catch(function(error){
+            console.log('an error in adding favorites ', error);
+        });
+    };
+
     //load page
     self.getBooks();
     self.getGenres();

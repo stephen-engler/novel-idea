@@ -132,5 +132,11 @@ router.delete('/genre/:id', (req,res)=>{
         });
 });
 
+//favorite routes
+router.post('/favorite', (req, res)=>{
+    console.log('in router post favorite, ', req.body)
+    res.sendStatus(200);
+});
+
 
 module.exports = router;

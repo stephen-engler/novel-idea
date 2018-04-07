@@ -17,6 +17,8 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
     self.reverse = false;
     //updates star
     self.updateStar = booksService.updateStar;
+    //add <3
+    self.addFavorite = booksService.addFavorite;
     
 
     //confirms delete from user with swal

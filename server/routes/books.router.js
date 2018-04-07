@@ -149,7 +149,17 @@ router.post('/favorite', (req, res)=>{
 
 router.get('/favorites', (req, res)=>{
     console.log('in router get favorites ');
-    res.sendStatus(200);
+    let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre", "favorites"."favBookId"
+ FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id" JOIN "favorites" ON "books"."id" = "favorites"."favBookId";`;
+
+    pool.query(queryText)
+        .then((response)=>{
+            res.send(response.rows);
+        })
+        .catch((error)=>{
+            console.log('an error in router get favorites from db ', error);
+            res.sendStatus(500);
+        });
 });
 
 

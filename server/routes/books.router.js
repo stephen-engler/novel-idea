@@ -147,7 +147,7 @@ router.post('/favorite', (req, res)=>{
         });
 });
 
-router.get('/favorites', (req, res)=>{
+router.get('/favorite', (req, res)=>{
     console.log('in router get favorites ');
     let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre", "favorites"."favBookId"
  FROM "books" JOIN "genres" ON "books"."genreId" = "genres"."id" JOIN "favorites" ON "books"."id" = "favorites"."favBookId";`;
@@ -161,6 +161,21 @@ router.get('/favorites', (req, res)=>{
             res.sendStatus(500);
         });
 });
+
+router.delete('/favorite/:id', (req, res)=>{
+    console.log('in router delete favorite ', req.params.id);
+    let queryText = ` DElETE FROM "favorites" WHERE "favBookId" = $1;`;
+
+    pool.query(queryText, [req.params.id])
+        .then((response)=>{
+            res.sendStatus(200);
+        })
+        .catch((error)=>{
+            console.log('an error deleting favorite in router ', error);
+            res.sendStatus(500);
+        });
+});
+
 
 
 module.exports = router;

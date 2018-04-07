@@ -144,7 +144,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         console.log('in get favorites');
         $http({
             method: 'GET',
-            url: '/books/favorites',
+            url: '/books/favorite',
         })
         .then(function(response){
             console.log('in get favorites response from server ', response.data);
@@ -157,7 +157,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
 
     self.removeFavorite = function(book){
         console.log('in remove favorites');
-        $http.delete('/books/favorites/'+book.favBookId)
+        $http.delete('/books/favorite/'+book.favBookId)
             .then(function(response){
                 self.getBooks();
                 self.getFavorites();

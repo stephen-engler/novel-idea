@@ -16,6 +16,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         return $http.post('/books',book).then(function(response){
             self.getBooks();
             self.getGenres();
+            self.getFavorites();
             return response;
         }).catch(function(error){
             console.log('an error in addBook from server ', error);
@@ -41,6 +42,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('deleted');
             self.getBooks();
             self.getGenres();
+            self.getFavorites();
         }).catch(function(error){
             console.log('an error in delete book ', error);
         });
@@ -70,6 +72,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         .then(function(response){
             self.getBooks();
             self.getGenres();
+            self.getFavorites();
             swal('Yay!', 'The book was updated', 'success');
         })
         .catch(function(error){
@@ -129,7 +132,8 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
         .then(function(response){
             console.log('in response from server in add favorites ', response);
             self.getBooks();
-            //get books
+            self.getFavorites();
+            
         })
         .catch(function(error){
             console.log('an error in adding favorites ', error);

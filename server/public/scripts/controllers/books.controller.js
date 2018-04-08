@@ -12,13 +12,14 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
     //gets Genres
     self.getGenres = booksService.getGenres;
     //list of ratings to loop over 
-    self.ratingList = booksService.ratingList;
+    self.ratingList = { list: [0, 1, 2, 3, 4, 5] };
     //sets reverse for the view
     self.reverse = false;
     //updates star
     self.updateStar = booksService.updateStar;
     //add <3
     self.addFavorite = booksService.addFavorite;
+
     
 
     //confirms delete from user with swal

@@ -12,6 +12,7 @@ app.controller('GenreController', ['BooksService', function (BooksService){
     self.getGenre = booksService.getGenre;
     //list of books
     self.books = booksService.books;
+    //show list or not
     self.show = {list: false};
 
     //checks if the genre is in use

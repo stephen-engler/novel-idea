@@ -76,7 +76,7 @@
                 <!-- icons -->
                 <div layout = "row">
                     <i class="material-icons pointer" ng-click="vm.confirmDelete(book)" flex>delete</i>
-                    <i class="material-icons pointer" ng-click="vm.updateBook(event, book)" flex>mode_edit</i>
+                    <i class="material-icons pointer" ng-click="vm.updateDialog(event, book)" flex>mode_edit</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, -1)" flex>arrow_downward</i>
                     <i class="material-icons pointer" ng-click="vm.updateStar(book, 1)" flex>arrow_upward</i>
                     <div ng-show="!book.favBookId"><i class="material-icons pointer " ng-click="vm.addFavorite(book)"flex>favorite_border</i></div>

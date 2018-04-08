@@ -2,13 +2,14 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     console.log('books service loaded');
 
     let self = this;
-
-    self.ratingList = {list:[0,1,2,3,4,5]};
+    //sets books object both all books and favorites
     self.books = {list: [], favorites: []};
+    //list of genres
     self.genreList = {list: []};
+    //book object to update, sent to update controller
     self.bookToUpdate = {book:{}};
 
-    //book routes
+    //--------book routes-------------
     //sends post to server with book
     self.addBook = function(book){
         console.log('in appservice, addBook ', book);
@@ -60,14 +61,15 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
                  console.log('an error updating star ', error);
              });
     };
-
+    //updates book from update controller
     self.updateBook=function(book){
         console.log(book);
+
         $http({
             method: 'PUT',
             url:'/books/'+ book.id,
             data: book,
-            params: {type: 'all'}
+            params: { type: 'all' }
         })
         .then(function(response){
             self.getBooks();
@@ -79,33 +81,37 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error in updateBook ', error);
         });
     };
+    //hides dialog for update controller
+    self.hide = function () {
+        $mdDialog.hide();
+    };
 
-    //genre routes
-
+    //---------genre routes---------
+    //adds genre to db
     self.addGenre = function(genreIn){
         console.log('in addGenre ', genreIn);
-        $http.post('/books/genre', genreIn).then(function(response){
+        $http.post('/genre', genreIn).then(function(response){
             self.getGenres();
         }).catch(function(error){
             console.log('an error in addGenre from server ', error);
         });
     };
-
+    //gets all genres
     self.getGenres = function(){
         console.log('in get Genre');
-        $http.get('/books/genre').then(function(response){
+        $http.get('/genre').then(function(response){
             console.log('in getGenres response ', response);
             self.genreList.list = response.data;
         }).catch(function(error){
             console.log('an error in getGenres ', error);
         });
     };
-
+    //deletes genre from db
     self.deleteGenre = function (genre) {
         let genreId = genre.id;
         console.log('in delete genre id', genreId);
 
-        return $http.delete('/books/genre/' + genreId).then(function (response) {
+        return $http.delete('/genre/' + genreId).then(function (response) {
             console.log('deleted');
             self.getGenres();
             return response;
@@ -116,15 +122,13 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
 
     };
 
-    self.hide = function () {
-        $mdDialog.hide();
-    };
-    //Favorite routes
+    // ----------Favorite routes------
+    //add favorite to db
     self.addFavorite = function(book){
         console.log('in add favorites ');
         $http({
             method: 'POST',
-            url:'/books/favorite',
+            url:'/favorite',
             data: book,
             //sets type of put request as param
             params: {type: 'addFavorite'}
@@ -139,12 +143,12 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error in adding favorites ', error);
         });
     };
-    
+    //gets all favorites from db
     self.getFavorites = function(){
         console.log('in get favorites');
         $http({
             method: 'GET',
-            url: '/books/favorite',
+            url: '/favorite',
         })
         .then(function(response){
             console.log('in get favorites response from server ', response.data);
@@ -154,10 +158,10 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             console.log('an error from server in get favorites ', error);
         });
     };
-
+    //deletes favorites 
     self.removeFavorite = function(book){
         console.log('in remove favorites');
-        $http.delete('/books/favorite/'+book.favBookId)
+        $http.delete('/favorite/'+book.favBookId)
             .then(function(response){
                 self.getBooks();
                 self.getFavorites();
@@ -167,7 +171,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             });
     };
 
-    //load page
+    //-----------load page------------
     self.getBooks();
     self.getGenres();
     self.getFavorites();

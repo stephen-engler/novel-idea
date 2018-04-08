@@ -4,7 +4,8 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
     let booksService = BooksService;
 
     let self = this;
-    
+    //add <3
+    self.addFavorite = booksService.addFavorite;
     //all books in books.list
     self.books = booksService.books;
     //list of genre's from teh server
@@ -17,10 +18,6 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
     self.reverse = false;
     //updates star
     self.updateStar = booksService.updateStar;
-    //add <3
-    self.addFavorite = booksService.addFavorite;
-
-    
 
     //confirms delete from user with swal
     self.confirmDelete = function (book) {
@@ -51,7 +48,7 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
             swal('Congrats', `You're book was added`, 'success');
         }).catch( function(error){
             console.log('test error in add book');
-            swal('oops', 'something went wrong');
+            swal('oops', 'something went wrong, was it spelled right?');
         });
     };
     //Shows dialog box for updating book

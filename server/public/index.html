@@ -14,7 +14,6 @@
     <script src="vendors/angular-aria.min.js" charset="utf-8"></script>
     <script src="vendors/angular-messages.min.js" charset="utf-8"></script>
     <script src="vendors/angular-material.min.js" charset="utf-8"></script>
-
     <!-- Sweet Alert -->
     <script src="vendors/sweetalert.min.js"></script>
     <!--Client-->
@@ -32,10 +31,13 @@
 </head>
 <body ng-app="App">
     <div>
+        <!-- nav bar -->
         <div ng-include=" 'views/templates/nav.html  ' "></div>
         <div class="md-block header" flex>
+            <!-- header -->
             <h2 class="titlehead">Novel Idea</h2>
         </div>
+        <!-- view -->
         <main ng-view>
         </main>
     </div>

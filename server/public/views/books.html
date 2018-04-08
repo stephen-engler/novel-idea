@@ -66,7 +66,7 @@
         </div>
         <!-- all books -->
         <div layout = "row"  layout-wrap layout-align="center start" flex>
-            <div class = "md-block float-left md-whiteframe-6dp repeated-item" flex='20'ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse | filter: vm.search" height=400px>
+            <div class = "md-block float-left md-whiteframe-6dp repeated-item slide" flex='20'ng-repeat = "book in vm.books.list | orderBy:vm.orderBy : vm.reverse | filter: vm.search" height=400px>
                 <div><image class = "centerImage" ng-src="{{book.imageurl}}"></image></div>
                 <div>{{book.title}}</div>
                 <div>By {{book.author}}</div>

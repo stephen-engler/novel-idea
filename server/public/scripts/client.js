@@ -1,4 +1,4 @@
-let app = angular.module('App', ['ngRoute', 'ngMaterial', 'ngMessages']);
+let app = angular.module('App', ['ngRoute', 'ngMaterial', 'ngMessages', 'ngAnimate']);
 
 //configs client side routes
 app.config(function ($routeProvider) {

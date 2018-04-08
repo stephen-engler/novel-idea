@@ -7,7 +7,17 @@ app.controller('UpdateController', ['BooksService', function(BooksService){
     //list of genres for dropdown
     self.genreList = booksService.genreList;
     //update book
-    self.updateBook = booksService.updateBook;
+    self.updateBook = function(book){
+        booksService.updateBook(book).then(function(response){
+            swal('Yay!', 'The book was updated', 'success');
+        })
+        .catch(function(error){
+            swal('Oops', `Something went wrong:(`);
+        });
+    };
+    
+    
+    
     //hides the dialog box
     self.hide = booksService.hide;
 }]);

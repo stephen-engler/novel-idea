@@ -52,7 +52,7 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
         });
     };
     //Shows dialog box for updating book
-    self.updateBook = function(ev, book){
+    self.updateDialog = function(ev, book){
         booksService.bookToUpdate.book = book;
         $mdDialog.show({
             controller: "UpdateController as vm",

@@ -65,7 +65,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
     self.updateBook=function(book){
         console.log(book);
 
-        $http({
+        return $http({
             method: 'PUT',
             url:'/books/'+ book.id,
             data: book,
@@ -75,10 +75,11 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             self.getBooks();
             self.getGenres();
             self.getFavorites();
-            swal('Yay!', 'The book was updated', 'success');
+            return response;
         })
         .catch(function(error){
             console.log('an error in updateBook ', error);
+            throw error;
         });
     };
     //hides dialog for update controller

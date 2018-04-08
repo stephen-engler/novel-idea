@@ -48,18 +48,8 @@ app.controller('BooksController', [ 'BooksService','$mdDialog',function (BooksSe
         console.log('addBook');
         booksService.addBook(book).then(function(result){
             console.log(result);
-            //swal('Congrats', `You're book was added`, 'success');
-            if(result.status ==200){
-                swal('Congrats', `You're book was added`, 'success');
-            }
-            else {
-                swal('oops', 'something went wrong');
-            }
-
-            //I Know this is a bit of a hack, the .then funciton would be called
-            //even when there was an error from the server
-            //the error function is never called for some reason :(
-        }, function(error){
+            swal('Congrats', `You're book was added`, 'success');
+        }).catch( function(error){
             console.log('test error in add book');
             swal('oops', 'something went wrong');
         });

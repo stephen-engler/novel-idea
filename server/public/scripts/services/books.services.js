@@ -21,7 +21,7 @@ app.service('BooksService', ['$http', '$mdDialog','$sce', function ($http, $mdDi
             return response;
         }).catch(function(error){
             console.log('an error in addBook from server ', error);
-            return error;
+            throw error;
         });
     };
     //get request sets self.books.list equal to response data

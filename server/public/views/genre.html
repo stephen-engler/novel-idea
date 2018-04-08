@@ -35,7 +35,7 @@
                 <i class="material-icons pointer" ng-click="vm.deleteGenre(genre)">delete</i>
             </div>
         </div>
-        <div ng-show="genre.show" layout = "row" layout-wrap layout-align="center start" flex>
+        <div ng-show="genre.show" class="fade repeated-item" layout = "row" layout-wrap layout-align="center start" flex>
             <div ng-repeat="book in vm.books.list | filter: genre.genre" class="md-block float-left md-whiteframe-6dp" flex='20'>
                 <div>
                     <image class="centerImage" ng-src="{{book.imageurl}}"></image>

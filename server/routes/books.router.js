@@ -60,7 +60,7 @@ router.delete('/:id', (req, res)=>{
         });
 });
 
-//updates the rating of the book in the db
+//updates the rating of the book in the db or the entire book
 router.put('/:id', (req, res)=>{
     let queryText='';
     let array =[];

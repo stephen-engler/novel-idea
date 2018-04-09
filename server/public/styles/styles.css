@@ -37,7 +37,6 @@ html {
     text-align: center;
     opacity: 0.75;
     color: white;
-
 }
 
 .heart {
@@ -50,6 +49,7 @@ html {
         margin: auto;
         width: 100%;
 }
+
 
 .navBar {
         background-color: antiquewhite;

@@ -49,7 +49,7 @@ CREATE TABLE "genres" (
     "id" serial primary key,
 	"genre" varchar (80)
 );
-``
+```
 Dummy data for genres table
 ```
 INSERT INTO "genres" ("genre") VALUES ('fantasy'), ('scifi'), ('history'), ('fiction'), ('mystery'), ('romance');

@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const pool = require('../modules/pool.js');
-
+//adds genre
 router.post('/', (req, res) => {
     console.log('in genre/post ', req.body);
     let genre = req.body.type;
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-
+//gets all genres
 router.get('/', (req, res) => {
     console.log('in genre get ');
 
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-
+//deletes a genre
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
     let queryText = 'DELETE FROM "genres" WHERE id = $1;';

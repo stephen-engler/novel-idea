@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-
+//gets all books that have been favorited 
 router.get('/', (req, res) => {
     console.log('in router get favorites ');
     let queryText = `SELECT "books"."id", "books"."title", "books"."author","books"."imageurl", "books"."year","books"."pages", "books"."rating", "books"."genreId","genres"."genre", "favorites"."favBookId"
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         });
 });
-
+//removes book by id from favorites table
 router.delete('/:id', (req, res) => {
     console.log('in router delete favorite ', req.params.id);
     let queryText = ` DElETE FROM "favorites" WHERE "favBookId" = $1;`;

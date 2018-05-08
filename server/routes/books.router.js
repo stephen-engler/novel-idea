@@ -16,7 +16,8 @@ router.post('/', (req,res)=>{
             book.imageurl = response.data.items[0].volumeInfo.imageLinks.thumbnail;
 
             //once image is reseived, book is added to db
-            let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId","imageurl") VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+            let queryText = `INSERT INTO "books" ("title", "author", "year", "pages","rating","genreId","imageurl") 
+                                VALUES ($1, $2, $3, $4, $5, $6, $7);`;
             pool.query(queryText, [book.title, book.author, book.year, book.pages, book.rating, book.genre, book.imageurl])
                 .then((response) => {
                     res.sendStatus(200);
@@ -45,7 +46,7 @@ router.get('/', (req,res)=>{
             res.sendStatus(500);
         });
 });
-
+//deletes book by id
 router.delete('/:id', (req, res)=>{
     console.log('in router delete ', req.params.id);
     let queryText = 'DELETE FROM "books" WHERE id = $1;';

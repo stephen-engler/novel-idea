@@ -4,7 +4,7 @@ app.controller('FavoritesController', ['BooksService', function(BooksService){
     let booksService = BooksService;
 
     self.books = booksService.books;
-
+    //communicates to the view to alert user
     self.removeFavorite = function(book){
         booksService.removeFavorite(book).then(function(response){
             swal('yay', `that book isn't very good anyway`);
